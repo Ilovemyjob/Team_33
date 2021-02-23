@@ -1,10 +1,17 @@
 Feature: sign in & user info & password functionality
 
-  Scenario: sign in
-    * open home page
-    * open sign in window
-    * enter username "username" & password "password" [as "role"]
-    * sign in & verify name "fullName"
+  Scenario Outline: sign in
+    * open webpage
+    * click on sign in button & navigate to login page
+    * type valid username "<username>" & valid password "<password>" for "<role>"
+    * verify home page & name "<fullName>"
+
+    Examples:
+    | role     | username | password | fullName |
+    | admin    | valid    | valid    | valid    |
+    | manager  | valid    | valid    | valid    |
+    | employer | valid    | valid    | valid    |
+    | customer | valid    | valid    | valid    |
 
   Scenario: sign in
     * sign in as "role"
@@ -16,15 +23,46 @@ Feature: sign in & user info & password functionality
       | employer |
       | customer |
 
-  Scenario Outline: sign in - DDT
-    * open home page
-    * open sign in window
-    * enter username "<username>" & password "<password>" [as "<roles>"]
-    * sign in & verify name "<fullName>"
+  Scenario Outline: sign in
+    * open webpage
+    * click on sign in button & navigate to login page
+    * type username "<username>" & password "<password>" for "<role>"
+    * verify error message
 
     Examples:
-    | username | password | fullName |
+      | role     | username | password |
+      | admin    | valid    | invalid  |
+      | admin    | invalid  | valid    |
+      | admin    | invalid  | invalid  |
+      | manager  | valid    | invalid  |
+      | manager  | invalid  | valid    |
+      | manager  | invalid  | invalid  |
+      | employer | valid    | invalid  |
+      | employer | invalid  | valid    |
+      | employer | invalid  | invalid  |
+      | customer | valid    | invalid  |
+      | customer | invalid  | valid    |
+      | customer | invalid  | invalid  |
 
-  # user info functionality
+  Scenario: reset password
+    * open webpage
+    * click on sign in button & navigate to login page
+    * click on forget password button
+    * type email & click on reset password button
+    * verify that message for password reset appears
 
-  # password functionality
+  Scenario: no registration yet
+    * open webpage
+    * click on sign in button & navigate to login page
+    * click on register a new account button
+    * verify that registration page opens
+
+  Scenario: no registration yet
+    * open webpage
+    * click on sign in button & navigate to login page
+    * click on cancel button
+    * verify that it not login page
+
+
+
+
