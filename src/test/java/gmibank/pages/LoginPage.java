@@ -27,11 +27,13 @@ public class LoginPage extends BasePage {
 
     public void login(String role) throws InterruptedException {
 
+        //open the landing page
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
         account.click();
         signIn.click();
         signInBtn.click();
         BrowserUtils.wait(5);
+        //type credentials
         username.sendKeys(ConfigurationReader.getProperty("username_" + role));
         Thread.sleep(1000);
         password.sendKeys(ConfigurationReader.getProperty("password_" + role));

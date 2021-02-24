@@ -12,10 +12,10 @@ Feature: sign in & user info & password functionality
     | manager  | valid    | valid    | valid    |
     | employer | valid    | valid    | valid    |
     | customer | valid    | valid    | valid    |
-@wip
-  Scenario: sign in
-    * sign in as "admin"
 
+  Scenario: sign in
+    * sign in as "customer"
+  @wip
   Scenario Outline: sign in
     * sign in as "<role>"
 
@@ -23,7 +23,7 @@ Feature: sign in & user info & password functionality
       | role     |
       | admin    |
       | manager  |
-      | employer |
+      | employee |
       | customer |
 
   Scenario Outline: sign in
