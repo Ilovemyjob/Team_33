@@ -1,7 +1,7 @@
 Feature: password functionality
 
   Background: password
-    * sign in as "role"
+    * sign in as "customer"
     * navigate to password page
 
   Scenario Outline: new password message
