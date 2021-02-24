@@ -1,5 +1,6 @@
 package gmibank.pages;
 
+import gmibank.utilities.BrowserUtils;
 import gmibank.utilities.ConfigurationReader;
 import gmibank.utilities.Driver;
 import org.openqa.selenium.By;
@@ -24,36 +25,60 @@ public class LoginPage extends BasePage{
     @FindBy(xpath="(//div[@class='modal-footer']/button/span)[2]")
     public WebElement signInBtn;
 
-    public void login(String role){
-
-        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
-
-        account.click();
-        signIn.click();
-        username.sendKeys(ConfigurationReader.getProperty("username_employee"));
-        password.sendKeys(ConfigurationReader.getProperty("password_employee"));
-        signInBtn.click();
+    public void login(String role) throws InterruptedException {
 
         switch (role) {
             case "admin":
-                username.sendKeys(ConfigurationReader.getProperty("username_admin"));
-                password.sendKeys(ConfigurationReader.getProperty("password_admin"));
+                Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+                account.click();
+                signIn.click();
                 signInBtn.click();
+                BrowserUtils.wait(5);
+                username.sendKeys(ConfigurationReader.getProperty("username_admin"));
+                Thread.sleep(1000);
+                password.sendKeys(ConfigurationReader.getProperty("password_admin"));
+                Thread.sleep(1000);
+                signInBtn.click();
+                Thread.sleep(2000);
                 break;
             case "manager":
-                username.sendKeys(ConfigurationReader.getProperty("username_manager"));
-                password.sendKeys(ConfigurationReader.getProperty("password_manager"));
+                Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+                account.click();
+                signIn.click();
                 signInBtn.click();
+                BrowserUtils.wait(5);
+                username.sendKeys(ConfigurationReader.getProperty("username_manager"));
+                Thread.sleep(1000);
+                password.sendKeys(ConfigurationReader.getProperty("password_manager"));
+                Thread.sleep(1000);
+                signInBtn.click();
+                Thread.sleep(2000);
                 break;
             case "employee":
-                username.sendKeys(ConfigurationReader.getProperty("username_employee"));
-                password.sendKeys(ConfigurationReader.getProperty("password_employee"));
+                Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+                account.click();
+                signIn.click();
                 signInBtn.click();
+                BrowserUtils.wait(5);
+                username.sendKeys(ConfigurationReader.getProperty("username_employee"));
+                Thread.sleep(1000);
+                password.sendKeys(ConfigurationReader.getProperty("password_employee"));
+                Thread.sleep(1000);
+                signInBtn.click();
+                Thread.sleep(3000);
                 break;
             case "customer":
-                username.sendKeys(ConfigurationReader.getProperty("username_customer"));
-                password.sendKeys(ConfigurationReader.getProperty("password_customer"));
+                Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+                account.click();
+                signIn.click();
                 signInBtn.click();
+                BrowserUtils.wait(5);
+                username.sendKeys(ConfigurationReader.getProperty("username_customer"));
+                Thread.sleep(1000);
+                password.sendKeys(ConfigurationReader.getProperty("password_customer"));
+                Thread.sleep(1000);
+                signInBtn.click();
+                Thread.sleep(3000);
                 break;
         }
     }

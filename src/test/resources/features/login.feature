@@ -14,7 +14,7 @@ Feature: sign in & user info & password functionality
     | customer | valid    | valid    | valid    |
 @wip
   Scenario: sign in
-    * sign in as "admin"
+    * sign in as "employee"
 
   Scenario Outline: sign in
     * sign in as "<role>"
