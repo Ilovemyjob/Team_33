@@ -1,7 +1,7 @@
 Feature: manage customers functionality
 
   Background: manage customers
-    * sign in as employer
+    * sign in as "employer"
     * navigate to "My Operations", "Manage Customers"
 
   Scenario: customers table

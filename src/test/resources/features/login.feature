@@ -1,7 +1,7 @@
 Feature: sign in & user info & password functionality
 
   Scenario Outline: sign in
-    * open webpage
+    * open landing page
     * click on sign in button & navigate to login page
     * type valid username "<username>" & valid password "<password>" for "<role>"
     * verify home page & name "<fullName>"
@@ -12,12 +12,15 @@ Feature: sign in & user info & password functionality
     | manager  | valid    | valid    | valid    |
     | employer | valid    | valid    | valid    |
     | customer | valid    | valid    | valid    |
-
+@wip
   Scenario: sign in
-    * sign in as "role"
+    * sign in as "admin"
 
-  Scenario: sign in
+  Scenario Outline: sign in
     * sign in as "<role>"
+
+    Examples:
+      | role     |
       | admin    |
       | manager  |
       | employer |
@@ -57,11 +60,11 @@ Feature: sign in & user info & password functionality
     * click on register a new account button
     * verify that registration page opens
 
-  Scenario: no registration yet
+  Scenario: cancel
     * open webpage
     * click on sign in button & navigate to login page
     * click on cancel button
-    * verify that it not login page
+    * verify that it does not login
 
 
 
