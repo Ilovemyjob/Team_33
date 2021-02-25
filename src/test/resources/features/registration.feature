@@ -1,131 +1,125 @@
 Feature: registration functionality
 
   Background: registration
-    * open webpage
+    * open landing page
     * navigate to registration page
 
-    Scenario Outline: ssn number
+  Scenario Outline: ssn_message
       * type ssn number "<ssn>"
-      * click on first name input box
-      * verify "<message_ssn>"
+      * verify "<ssn_message>"
 
       Examples:
-      |     ssn     |                 message_ssn                 |
-      | 567-73-5790 |                                             |
+      |     ssn     |                 ssn_message                 |
       |             | translation-not-found[Your SSN is required] |
-      | 567*73*5790 | translation-not-found[Your SSN is required] |
-      | 567735790   | translation-not-found[Your SSN is required] |
-      | 567-735-790 | translation-not-found[Your SSN is required] |
-      | 567-73-790  | translation-not-found[Your SSN is required] |
-      | 5a7-73-790  | translation-not-found[Your SSN is required] |
-      | 567-7!-790  | translation-not-found[Your SSN is required] |
-      | 000-73-5790 | translation-not-found[Your SSN is required] |
-      | 999-73-5790 | translation-not-found[Your SSN is required] |
+      | 567*73*5790 | Your SSN is invalid                         |
+      | 567735790   | Your SSN is invalid                         |
+      | 567-735-790 | Your SSN is invalid                         |
+      | 567-73-790  | Your SSN is invalid                         |
+      | 5a7-73-790  | Your SSN is invalid                         |
+      | 567-7!-790  | Your SSN is invalid                         |
+      | 000-73-5790 | Your SSN is invalid                         |
+      | 999-73-5790 | Your SSN is invalid                         |
 
-    Scenario Outline: first name
-      * type first name "<firstName>"
-      * click on ssn input box
-      * verify "<message_firstName>"
+  Scenario Outline: first name
+    * type first name "<firstName>"
+    * verify first name message "<message_firstName>"
 
-      Examples:
-      | firstName |      message_firstName      |
-      | Mike      |                             |
-      |           | Your First Name is required |
+    Examples:
+    | firstName |      message_firstName      |
+    |           | Your First Name is required |
 
   Scenario Outline: last name
     * type last name "<lastName>"
-    * click on ssn input box
-    * verify "<message_lastName>"
+    * verify last name message "<message_lastName>"
 
     Examples:
       | lastName |     message_lastName       |
-      | Cyber    |                            |
       |          | Your Last Name is required |
-
-  Scenario Outline: address
-    * type address "<address>"
-    * click on ssn input box
-    * verify "<message_address>"
-
-    Examples:
-      | address                           |     message_address      |
-      | 24 Grafton Street London SR3 HN7  |                          |
-      | 24 Grafton Street London          | Zip Code is required     |
-      |                                   | Your Address is required |
 
   Scenario Outline: mobile phone
     * type mobile phone "<mobilePhone>"
-    * click on ssn input box
-    * verify "<message_mobilePhone>"
+    * verify mobile phone message "<message_mobilePhone>"
 
     Examples:
-      | mobilePhone  |          message_mobilePhone         |
-      | 456-765-2390 |                                      |
-      | 4567652390   | Your Mobile Phone Number is required |
-      | 456765239    | Your Mobile Phone Number is required |
-      | 456 765 2390 | Your Mobile Phone Number is required |
-      | 456/765/2390 | Your Mobile Phone Number is required |
-      | 4a6-7c5-2390 | Your Mobile Phone Number is required |
-      |              | Your Mobile Phone Number is required |
+      | mobilePhone  |         message_mobilePhone         |
+      | 4567652390   | Your mobile phone number is invalid |
+      | 456765239    | Your mobile phone number is invalid |
+      | 456 765 2390 | Your mobile phone number is invalid |
+      | 456/765/2390 | Your mobile phone number is invalid |
+      | 4a6-7c5-2390 | Your mobile phone number is invalid |
 
   Scenario Outline: username
     * type username "<username>"
-    * click on ssn input box
-    * verify "<message_username>"
+    * verify username message "<message_username>"
 
     Examples:
       | username |     message_username       |
-      | George   |                            |
-      | Chad     |                            |
       |          | Your username is required. |
 
-  Scenario Outline: email
+  Scenario Outline: invalid email
     * type email "<email>"
-    * click on ssn input box
-    * verify "<message_email>"
+    * verify email message "<message_email>"
 
     Examples:
-      |      email       |     message_email       |
-      | john@smith.com   |                         |
-      | john_smith.com   | Your email is required. |
-      | john@smithcom    | Your email is required. |
-      | john.smith@com   | Your email is required. |
-      | john@smith.com@  | Your email is required. |
-      |                  | Your email is required. |
+      |      email       |     message_email     |
+      | john_smith.com   | This field is invalid |
+      | john@smithcom    | This field is invalid |
+      | john.smith@com   | This field is invalid |
+      | john@smith.com@  | This field is invalid |
 
-    Scenario Outline: new password messages
-      * type new password "<password_new>"
-      * click on ssn input box
-      * verify new password message "<password_new_message>"
+  Scenario Outline: email less that 5 chars
+    * type email "<email>"
+    * verify the email message "<message_email>"
 
-      Examples:
+    Examples:
+      | email |                message_email                        |
+      | a     | Your email is required to be at least 5 characters. |
+      | a@    | Your email is required to be at least 5 characters. |
+      | a@b   | Your email is required to be at least 5 characters. |
+      | a@b.  | Your email is required to be at least 5 characters. |
+
+  Scenario Outline: no email
+    * type email "<email>"
+    * verify below email message "<message_email>"
+
+    Examples:
+      | email |     message_email       |
+      |       | Your email is required. |
+
+  Scenario Outline: no new password messages
+    * type new password "<password_new>"
+    * verify new password message "<password_new_message>"
+
+    Examples:
+    | password_new | password_new_message                                   |
+    |              | Your password is required.                             |
+
+  Scenario Outline: new password messages
+    * type new password "<password_new>"
+    * verify the new password message "<password_new_message>"
+
+    Examples:
       | password_new | password_new_message                                   |
-      |              | Your password is required.                             |
       | a            | Your password is required to be at least 4 characters. |
       | 1c           | Your password is required to be at least 4 characters. |
       | K&6          | Your password is required to be at least 4 characters. |
       | k?8          | Your password is required to be at least 4 characters. |
-      | a!B7         |                                                        |
-      | 5a!B7        |                                                        |
-      | 5a!B75       |                                                        |
-      | Abcdefg      |                                                        |
+@wip
+  Scenario Outline: new password confirmation messages
+    * type new password confirmation "<password_new_confirmation>"
+    * verify new password confirmation message "<password_new_confirmation_message>"
 
-    Scenario Outline: new password confirmation messages
-      * type new password confirmation "<password_new_confirmation>"
-      * click on ssn input box
-      * verify new password confirmation message "<password_new_confirmation_message>"
-
-      Examples:
-      | password_new_confirmation | password_new_confirmation_message                      |
-      |                           | Your password is required.                             |
-      | a                         | Your password is required to be at least 4 characters. |
-      | 1c                        | Your password is required to be at least 4 characters. |
-      | K&6                       | Your password is required to be at least 4 characters. |
-      | k?8                       | Your password is required to be at least 4 characters. |
-      | a!B7                      |                                                        |
-      | 5a!B7                     |                                                        |
-      | 5a!B75                    |                                                        |
-      | Abcdefg                   |                                                        |
+    Examples:
+    | password_new_confirmation | password_new_confirmation_message                      |
+    |                           | Your password is required.                             |
+    | a                         | Your password is required to be at least 4 characters. |
+    | 1c                        | Your password is required to be at least 4 characters. |
+    | K&6                       | Your password is required to be at least 4 characters. |
+    | k?8                       | Your password is required to be at least 4 characters. |
+    | a!B7                      |                                                        |
+    | 5a!B7                     |                                                        |
+    | 5a!B75                    |                                                        |
+    | Abcdefg                   |                                                        |
 
   Scenario Outline: new password strength
     * type new password "<password_new>"

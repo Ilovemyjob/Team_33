@@ -15,9 +15,23 @@ public class LoginStepDef {
         loginPage.login(role);
     }
 
+    @Given("open landing page")
+    public void open_landing_page() {
+        //open the landing page
+        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+        loginPage.account.click();
+    }
 
+    @Given("click on sign in button & navigate to login page")
+    public void click_on_sign_in_button_navigate_to_login_page() {
 
+    }
+    @Given("type username {string} & password {string} for {string}")
+    public void type_username_password_for(String string, String string2, String string3) {
 
+    }
+    @Given("verify error message")
+    public void verify_error_message() {
 
-
+    }
 }

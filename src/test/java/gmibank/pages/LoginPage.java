@@ -31,7 +31,6 @@ public class LoginPage extends BasePage {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
         account.click();
         signIn.click();
-        signInBtn.click();
         BrowserUtils.wait(5);
         //type credentials
         username.sendKeys(ConfigurationReader.getProperty("username_" + role));

@@ -1,6 +1,5 @@
 Feature: sign in & user info & password functionality
-
-  @wip
+@wip
   Scenario: sign in
     * sign in as "employee"
 
