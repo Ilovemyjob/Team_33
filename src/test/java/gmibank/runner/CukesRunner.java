@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
                 "rerun:target/rerun.txt"},
         features = "src/test/resources/features",
         glue = "gmibank/stepdefs",
-        tags = "@wip",
+        tags = "@Emrah",
         dryRun = false
 )
 

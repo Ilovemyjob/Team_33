@@ -1,13 +1,14 @@
 Feature: An Employee can create a new Account
 
   Background:
-    * sign in as "employee"
+
 
     * User click on My Operations
     * User click on Manage Accounts
     * User click Create a new Account
 
-  Scenario: 1. User should create a description for the new account and it cannot be blank
+  @Emrah
+  Scenario: User should create a description for the new account and it cannot be blank
 
 
     * User Enter invalid description
