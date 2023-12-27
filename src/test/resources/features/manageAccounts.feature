@@ -92,6 +92,8 @@ Feature: manage accounts functionality
     Examples:
     | description | balance | accountType | accountStatusType | date_create | date_close | employee | message |
 
+
+
     # Account Type options: CHECKING, SAVING, CREDIT_CARD, INVESTING
     # Account Status Type options: ACTIVE, SUSPENDED, CLOSED
 
@@ -102,3 +104,5 @@ Feature: manage accounts functionality
         # | 21/02/2021 15:08 |
         # | 02/21/2021 15:00 |
         # | 01/29/2021 44:02 |
+
+
